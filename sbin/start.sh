@@ -1,1 +1,1 @@
-nohup sudo /root/metricbeat/metricbeat -e -c /root/metricbeat/metricbeat.yml > /dev/null 2>&1 &
+nohup /root/metricbeat/metricbeat -e -c /root/metricbeat/metricbeat.yml > /dev/null 2>&1 &
