@@ -10,6 +10,7 @@ for server in `cat "$SERVERLIST"`; do
   ssh $server "ln -s /root/metricbeat-6.1.4-linux-x86_64 /root/metricbeat"
   scp -r config/metricbeat.yml root@$server:~/metricbeat;
   scp -r sbin root@$server:~/metricbeat;
+  ssh $server "chown -R root /root/metricbeat-6.1.4-linux-x86_64"
   ssh $server "chmod +x /root/metricbeat/sbin/*.sh"
 done
 
