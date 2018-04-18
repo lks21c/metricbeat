@@ -31,6 +31,10 @@ for server in `cat "$SERVERLIST"`; do
     ssh $server "rm -rf /root/metricbeat/modules.d/zookeeper*"
     scp -r config/modules.d/zookeeper.yml.disabled root@$server:~/metricbeat/modules.d/;
     ssh $server "cd ~/metricbeat/ && ./metricbeat modules enable zookeeper"
+  elif [ "$2" == "kafka" ]; then
+        ssh $server "rm -rf /root/metricbeat/modules.d/kafka*"
+        scp -r config/modules.d/kafka.yml.disabled root@$server:~/metricbeat/modules.d/;
+        ssh $server "cd ~/metricbeat/ && ./metricbeat modules enable kafka"
   fi
 
 done
