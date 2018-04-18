@@ -30,7 +30,7 @@ for server in `cat "$SERVERLIST"`; do
   if [ "$2" == "zookeeper" ]; then
     ssh $server "rm -rf /root/metricbeat/modules.d/zookeeper*"
     scp -r config/modules.d/zookeeper.yml.disabled root@$server:~/metricbeat/modules.d/;
-    ssh $server ""cd ~/metricbeat/ && ./metricbeat modules enable zookeeper"
+    ssh $server "cd ~/metricbeat/ && ./metricbeat modules enable zookeeper"
   fi
 
 done
