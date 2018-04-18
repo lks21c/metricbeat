@@ -19,7 +19,6 @@ for server in `cat "$SERVERLIST"`; do
 
   if [ "$2" == "zookeeper" ]; then
       scp -r config/modules.d/zookeeper.yml.disabled root@$server:~/metricbeat/modules.d/;
-  else
   fi
 
   # copy sbin for script execution
