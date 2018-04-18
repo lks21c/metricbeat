@@ -17,10 +17,6 @@ for server in `cat "$SERVERLIST"`; do
   # copy metricbeat.yml forcefully
   scp -r config/metricbeat.yml root@$server:~/metricbeat;
 
-  if [ "$2" == "zookeeper" ]; then
-      scp -r config/modules.d/zookeeper.yml.disabled root@$server:~/metricbeat/modules.d/;
-  fi
-
   # copy sbin for script execution
   scp -r sbin root@$server:~/metricbeat;
 
@@ -29,6 +25,13 @@ for server in `cat "$SERVERLIST"`; do
 
   # add exec permmision to scripts
   ssh $server "chmod +x /root/metricbeat/sbin/*.sh"
+
+  # add extended module config and enable the module
+  if [ "$2" == "zookeeper" ]; then
+        scp -r config/modules.d/zookeeper.yml.disabled root@$server:~/metricbeat/modules.d/;
+        ssh $server "/root/metricbeat/metricbeat modules enable zookeeper"
+  fi
+
 done
 
 wait
