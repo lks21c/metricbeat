@@ -28,9 +28,9 @@ for server in `cat "$SERVERLIST"`; do
 
   # add extended module config and enable the module
   if [ "$2" == "zookeeper" ]; then
-    ssh $server "rm -rf /root/metricbeat/metricbeat/modules.d/zookeeper*"
+    ssh $server "rm -rf /root/metricbeat/modules.d/zookeeper*"
     scp -r config/modules.d/zookeeper.yml.disabled root@$server:~/metricbeat/modules.d/;
-    ssh $server "/root/metricbeat/metricbeat modules enable zookeeper"
+    ssh $server ""cd ~/metricbeat/ && ./metricbeat modules enable zookeeper"
   fi
 
 done
